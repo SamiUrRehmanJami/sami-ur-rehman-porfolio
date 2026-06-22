@@ -8,41 +8,43 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 215 28% 17%;
-    --foreground: 180 100% 90%;
+    /* Deep dark violet base */
+    --background: 250 28% 7%;
+    --foreground: 270 20% 94%;
 
-    --card: 217 33% 20%;
-    --card-foreground: 180 100% 95%;
+    --card: 252 24% 11%;
+    --card-foreground: 270 20% 96%;
 
-    --popover: 217 33% 17%;
-    --popover-foreground: 180 100% 95%;
+    --popover: 250 28% 9%;
+    --popover-foreground: 270 20% 96%;
 
-    --primary: 186 100% 42%;
-    --primary-foreground: 217 33% 10%;
+    /* Electric indigo-blue primary */
+    --primary: 224 85% 65%;
+    --primary-foreground: 224 30% 8%;
 
-    --secondary: 215 25% 27%;
-    --secondary-foreground: 180 100% 95%;
+    --secondary: 225 20% 17%;
+    --secondary-foreground: 220 20% 94%;
 
-    --muted: 215 20% 30%;
-    --muted-foreground: 180 10% 65%;
+    --muted: 225 16% 21%;
+    --muted-foreground: 220 10% 56%;
 
-    --accent: 186 100% 42%;
-    --accent-foreground: 217 33% 10%;
+    --accent: 224 85% 65%;
+    --accent-foreground: 224 30% 8%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 215 25% 25%;
-    --input: 215 25% 25%;
-    --ring: 186 100% 42%;
+    --border: 225 16% 16%;
+    --input: 225 16% 16%;
+    --ring: 224 85% 65%;
 
-    --radius: 1.5rem;
+    --radius: 1.25rem;
 
-    --gradient-primary: linear-gradient(135deg, hsl(186 100% 42%), hsl(186 100% 52%));
-    --gradient-hero: linear-gradient(135deg, hsl(217 33% 17%), hsl(215 28% 25%));
-    --glow-cyan: 0 0 40px hsl(186 100% 42% / 0.4);
-    --glow-subtle: 0 8px 32px hsl(0 0% 0% / 0.3);
-    --glass-bg: hsl(217 33% 20% / 0.6);
+    --gradient-primary: linear-gradient(135deg, hsl(224 85% 65%), hsl(235 80% 58%));
+    --gradient-hero: linear-gradient(135deg, hsl(226 35% 6%) 0%, hsl(225 28% 10%) 50%, hsl(228 30% 7%) 100%);
+    --glow-cyan: 0 0 40px hsl(224 85% 65% / 0.35);
+    --glow-subtle: 0 8px 40px hsl(0 0% 0% / 0.6);
+    --glass-bg: hsl(252 24% 11% / 0.6);
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
@@ -55,13 +57,50 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 72px;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  h3 {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+  }
+
+  /* Better text selection */
+  ::selection {
+    background: hsl(183 100% 44% / 0.25);
+    color: hsl(183 100% 80%);
+  }
+
+  /* Smooth scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(222 35% 10%);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(183 100% 44% / 0.4);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(183 100% 44% / 0.7);
   }
 }
