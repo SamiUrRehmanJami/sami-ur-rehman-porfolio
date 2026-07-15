@@ -2,7 +2,7 @@ import { Code2, Heart, Trophy, Zap } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { stats } from "@/data/portfolio";
 
-export const About = () => {
+export const About = () => {    
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
