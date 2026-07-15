@@ -7,7 +7,7 @@ export const About = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const observer = new IntersectionObserver(                
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true);
       },
