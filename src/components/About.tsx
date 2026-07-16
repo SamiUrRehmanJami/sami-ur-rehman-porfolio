@@ -85,6 +85,7 @@ export const About = () => {
                       </div>
                       <span className={`text-sm font-semibold text-center ${item.color}`}>
                         {item.label}
+                        {item.label}
                       </span>
                     </div>
                   ))}
