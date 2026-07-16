@@ -84,7 +84,7 @@ export const About = () => {
                         <item.icon className="w-8 h-8 text-primary-foreground" />
                       </div>
                       <span className={`text-sm font-semibold text-center ${item.color}`}>
-                        {item.label}
+                        {item?.label}
                       </span>
                     </div>
                   ))}
