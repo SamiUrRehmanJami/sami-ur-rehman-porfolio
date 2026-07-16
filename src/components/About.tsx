@@ -95,7 +95,7 @@ export const About = () => {
                     {stats.map((stat) => (
                       <div key={stat.label}>
                         <p className="text-3xl font-bold text-primary">{stat?.value}</p>
-                        <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{stat?.label}</p>
                       </div>
                     ))}
                   </div>
