@@ -90,12 +90,14 @@ export const About = () => {
                   ))}
                 </div>
 
+
+
                 <div className="mt-8 pt-8 border-t border-border">
                   <div className="grid grid-cols-3 gap-4 text-center">
                     {stats.map((stat) => (
                       <div key={stat.label}>
-                        <p className="text-3xl font-bold text-primary">{stat?.value}</p>
-                        <p className="text-sm text-muted-foreground mt-1">{stat?.label}</p>
+                        <p className="text-3xl font-bold text-primary">{stat.value}</p>
+                        <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
                       </div>
                     ))}
                   </div>
