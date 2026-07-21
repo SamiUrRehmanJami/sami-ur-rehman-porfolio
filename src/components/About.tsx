@@ -62,6 +62,7 @@ export const About = () => {
               From architecting scalable backend systems and integrating LLM/RAG AI pipelines to
               crafting engaging frontend interfaces, I bring end-to-end ownership to every project.
               I have a remote-first mindset with 5+ years collaborating with US teams across time zones.
+              ...
             </p>
           </div>
 
