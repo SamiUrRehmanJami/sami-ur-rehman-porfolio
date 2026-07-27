@@ -5,7 +5,7 @@ export const personal = {
   subtitle: "MERN/MEAN · React · Next.js · Node.js · AI/LLM Systems",
   tagline: "Building production-grade web apps & AI products for US and global clients",
   availability: "Available for Remote Projects",
-  email: "samiakbar680@9999gmail.com",
+  email: "samiakbar680@99919gmail.com",
   phone: "+92 (306) 612202133",
   phoneTel: "+923066122021",
   location: "Okara, Pakistan 🇵🇰",
