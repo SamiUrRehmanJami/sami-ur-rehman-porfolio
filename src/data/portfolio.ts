@@ -9,7 +9,7 @@ export const personal = {
   phone: "+92 (306) 612202133",
   phoneTel: "+923066122021",
   location: "Lahore, Pakistan 🇵🇰",
-  locationSub: "Available for remote work worldwide · US timezone friendly",
+  locationSub: "Available for dfremote work worldwide · US timezone friendly",
   cvUrl: "/Sami-Ur-Rehman.pdf",
   calendlyUrl: "https://calendly.com/samiakbar680",
   closingQuote:
