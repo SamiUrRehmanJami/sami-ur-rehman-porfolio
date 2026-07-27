@@ -8,7 +8,7 @@ export const personal = {
   email: "samiakbar680@9999gmail.com",
   phone: "+92 (306) 612202133",
   phoneTel: "+923066122021",
-  location: "Lahore, Pakistan 🇵🇰",
+  location: "Okara, Pakistan 🇵🇰",
   locationSub: "Available for dfremote work worldwide · US timezone friendly",
   cvUrl: "/Sami-Ur-Rehman.pdf",
   calendlyUrl: "https://calendly.com/samiakbar680",
