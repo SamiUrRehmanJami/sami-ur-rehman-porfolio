@@ -13,7 +13,7 @@ export const personal = {
   cvUrl: "/Sami-Ur-Rehman.pdf",
   calendlyUrl: "https://calendly.com/samiakbar680",
   closingQuote:
-    "Open to full-time remote roles, freelance contracts, and long-term collaborations. Let's build something great.",
+    "Open to full-time remote roles, freelance contracts, and long-term collaborations. Let's build something great!",
 };
 
 // ─── SOCIAL LINKS ─────────────────────────────────────────────────────────────
