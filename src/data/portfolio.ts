@@ -6,7 +6,7 @@ export const personal = {
   tagline: "Building production-grade web apps & AI products for US and global clients",
   availability: "Available for Remote Projects",
   email: "samiakbar680@9999gmail.com",
-  phone: "+92 (306) 6122021",
+  phone: "+92 (306) 612202133",
   phoneTel: "+923066122021",
   location: "Lahore, Pakistan 🇵🇰",
   locationSub: "Available for remote work worldwide · US timezone friendly",
