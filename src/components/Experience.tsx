@@ -21,62 +21,59 @@ export const Experience = () => {
     <section
       id="experience"
       ref={sectionRef}
-      className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-b from-secondary/20 to-background relative overflow-hidden"
+      className="py-20 sm:py-28 px-4 sm:px-6 bg-background"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
-
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto">
         <div
-          className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ${
+          className={`text-center max-w-2xl mx-auto transition-all duration-1000 ${
             isVisible ? "animate-fade-in-up" : "opacity-0"
           }`}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Professional Journey
+          <span className="eyebrow">Journey</span>
+          <h2 className="mt-4 mb-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
+            Where I've worked<span className="text-primary">.</span>
           </h2>
-          <div className="h-1 w-24 bg-gradient-primary rounded-full mx-auto mb-6" />
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
-            A timeline of growth, learning, and impactful contributions
+          <p className="text-base sm:text-lg text-muted-foreground">
+            Six-plus years building and scaling production software — most recent first.
           </p>
         </div>
 
-        {/* Timeline — vertical left-aligned on all screens */}
-        <div className="max-w-3xl mx-auto relative">
-          {/* Vertical spine */}
-          <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary/60 via-primary/20 to-transparent" />
+        {/* Timeline */}
+        <div className="mt-14 max-w-3xl mx-auto relative">
+          <div className="absolute left-6 sm:left-7 top-2 bottom-2 w-px bg-border" />
 
           {experiences.map((exp, index) => (
             <div
               key={exp.role + exp.company}
-              className={`relative pl-16 sm:pl-24 mb-10 sm:mb-12 transition-all duration-1000 ${
+              className={`relative pl-16 sm:pl-20 mb-8 transition-all duration-1000 ${
                 isVisible ? "animate-fade-in-up" : "opacity-0"
               }`}
-              style={{ animationDelay: `${index * 300}ms` }}
+              style={{ animationDelay: `${index * 180}ms` }}
             >
-              {/* Timeline dot */}
-              <div className="absolute left-0 sm:left-2 top-5 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-primary flex items-center justify-center shadow-glow flex-shrink-0 z-10">
-                <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground" />
+              {/* dot */}
+              <div className="absolute left-0 sm:left-1 top-6 w-12 h-12 rounded-full bg-foreground flex items-center justify-center z-10">
+                <Briefcase className="w-5 h-5 text-background" />
               </div>
 
-              {/* Card */}
-              <div className="bg-card/70 backdrop-blur-glass border border-border rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-glass hover:shadow-glow transition-all duration-500 group hover:border-primary/30">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+              {/* card */}
+              <div className="bg-card border border-border rounded-2xl p-6 sm:p-7 shadow-[0_1px_2px_rgba(17,17,17,.05)] hover:shadow-glow transition-all duration-300 group">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                   <div>
-                    <h3 className="text-lg sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-lg sm:text-xl font-bold text-foreground">
                       {exp.role}
                     </h3>
-                    <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-                      <p className="text-base sm:text-lg text-primary font-semibold">
+                    <div className="flex items-center gap-2 mt-1 flex-wrap">
+                      <p className="text-[0.95rem] text-primary font-semibold">
                         {exp.company}
                       </p>
                       {exp.type && (
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-secondary text-muted-foreground">
+                        <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium">
                           {exp.type}
                         </span>
                       )}
                     </div>
-                    <p className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground mt-1">
-                      <MapPin className="w-3 h-3 flex-shrink-0" />
+                    <p className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground mt-1.5">
+                      <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
                       {exp.location}
                     </p>
                   </div>
@@ -86,26 +83,21 @@ export const Experience = () => {
                   </div>
                 </div>
 
-                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
+                <p className="text-sm sm:text-[0.95rem] text-muted-foreground leading-relaxed mb-4">
                   {exp.description}
                 </p>
 
-                <div className="space-y-1.5">
-                  <p className="text-xs sm:text-sm font-semibold text-foreground uppercase tracking-wide">
-                    Key Achievements
-                  </p>
-                  <ul className="space-y-1.5">
-                    {exp.achievements.map((achievement, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-2 text-xs sm:text-sm text-muted-foreground"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                        {achievement}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ul className="space-y-1.5">
+                  {exp.achievements.map((achievement, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-2.5 text-sm text-muted-foreground"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      {achievement}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           ))}

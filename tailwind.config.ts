@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        'inter': ['Inter', 'sans-serif'],
-        'poppins': ['Poppins', 'sans-serif'],
-        'sans': ['Inter', 'sans-serif'],
+        'inter': ['Instrument Sans', 'sans-serif'],
+        'poppins': ['Instrument Sans', 'sans-serif'],
+        'sans': ['Instrument Sans', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -102,6 +102,10 @@ export default {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-20px)" },
         },
+        "float-soft": {
+          "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+          "50%": { transform: "translateY(-9px) rotate(-0.6deg)" },
+        },
         "shimmer": {
           "0%": { backgroundPosition: "-200% center" },
           "100%": { backgroundPosition: "200% center" },
@@ -116,6 +120,7 @@ export default {
         "slide-in-right": "slide-in-right 0.8s ease-out",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
         "float": "float 3s ease-in-out infinite",
+        "float-soft": "float-soft 4s ease-in-out infinite",
         "shimmer": "shimmer 3s linear infinite",
       },
     },

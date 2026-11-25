@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { services } from "@/data/portfolio";
 
 export const Services = () => {
@@ -21,69 +20,61 @@ export const Services = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
-
   return (
     <section
       id="services"
       ref={sectionRef}
-      className="py-12 sm:py-16 px-4 sm:px-6 bg-background relative overflow-hidden"
+      className="py-20 sm:py-28 px-4 sm:px-6 bg-background"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-primary/8 via-transparent to-transparent" />
-
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto">
         <div
-          className={`text-center mb-16 transition-all duration-1000 ${
+          className={`text-center max-w-2xl mx-auto transition-all duration-1000 ${
             isVisible ? "animate-fade-in-up" : "opacity-0"
           }`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            What I Build
+          <span className="eyebrow">Services</span>
+          <h2 className="mt-4 mb-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
+            What I help teams build<span className="text-primary">.</span>
           </h2>
-          <div className="h-1 w-24 bg-gradient-primary rounded-full mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Services I offer to startups and businesses worldwide
+          <p className="text-base sm:text-lg text-muted-foreground">
+            From MVP to enterprise scale — full-stack product engineering with AI baked in where it
+            actually earns its place.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {services.map((service, index) => (
             <div
               key={service.title}
-              className={`group transition-all duration-1000 ${
+              className={`bg-card border border-border rounded-2xl p-6 shadow-[0_1px_2px_rgba(17,17,17,.05)] hover:-translate-y-1 hover:shadow-glow hover:border-border transition-all duration-300 ${
                 isVisible ? "animate-fade-in-up" : "opacity-0"
               }`}
-              style={{ animationDelay: `${index * 150}ms` }}
+              style={{ animationDelay: `${index * 120}ms` }}
             >
-              <div className="relative h-full">
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-3xl blur-xl opacity-10 group-hover:opacity-25 transition-opacity duration-500`}
-                />
-                <div className="relative bg-card/60 backdrop-blur-glass border border-border rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-glass hover:shadow-glow hover:border-primary/40 transition-all duration-500 h-full hover:scale-[1.02]">
-                  <div className="text-4xl mb-5">{service.icon}</div>
-                  <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
+              <div className="inline-grid place-items-center min-w-[40px] h-[26px] px-2 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wide mb-5">
+                {String(index + 1).padStart(2, "0")}
               </div>
+              <h3 className="text-[1.15rem] font-bold text-foreground mb-2.5 leading-snug">
+                {service.title}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {service.description}
+              </p>
             </div>
           ))}
         </div>
 
         <div
-          className={`mt-14 text-center transition-all duration-1000 delay-700 ${
+          className={`mt-12 text-center transition-all duration-1000 delay-500 ${
             isVisible ? "animate-fade-in-up" : "opacity-0"
           }`}
         >
-          <Button
-            size="lg"
-            className="bg-gradient-primary text-primary-foreground font-semibold px-10 py-6 text-lg rounded-full shadow-glow hover:shadow-[0_0_60px_hsl(186_100%_42%_/_0.6)] transition-all duration-300 hover:scale-105"
+          <button
             onClick={scrollToContact}
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-foreground text-background font-semibold hover:-translate-y-0.5 hover:shadow-glow transition-all duration-200"
           >
-            Discuss Your Project
-          </Button>
+            Discuss your project →
+          </button>
         </div>
       </div>
     </section>

@@ -16,52 +16,46 @@ export const WhyHireMe = () => {
     return () => observer.disconnect();
   }, []);
 
-
   return (
     <section
       id="why-hire-me"
       ref={sectionRef}
-      className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-b from-secondary/20 to-background relative overflow-hidden"
+      className="py-20 sm:py-28 px-4 sm:px-6 bg-muted"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-primary/8 via-transparent to-transparent" />
-
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto">
         <div
-          className={`text-center mb-16 transition-all duration-1000 ${
+          className={`text-center max-w-2xl mx-auto transition-all duration-1000 ${
             isVisible ? "animate-fade-in-up" : "opacity-0"
           }`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Why Hire Me
+          <span className="eyebrow">Why work with me</span>
+          <h2 className="mt-4 mb-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
+            A focused engineering partner<span className="text-primary">.</span>
           </h2>
-          <div className="h-1 w-24 bg-gradient-primary rounded-full mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            What international clients say about working with me
+          <p className="text-base sm:text-lg text-muted-foreground">
+            Clear communication, full ownership, and work that's live and serving real users — not
+            just slideware.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {whyHireMe.map((card, index) => (
             <div
               key={card.title}
-              className={`transition-all duration-1000 ${
+              className={`bg-card border border-border rounded-2xl p-6 shadow-[0_1px_2px_rgba(17,17,17,.05)] hover:-translate-y-1 hover:shadow-glow transition-all duration-300 ${
                 isVisible ? "animate-fade-in-up" : "opacity-0"
               }`}
-              style={{ animationDelay: `${index * 150}ms` }}
+              style={{ animationDelay: `${index * 120}ms` }}
             >
-              <div className="group bg-card/60 backdrop-blur-glass border border-border rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-glass hover:shadow-glow hover:border-primary/40 transition-all duration-500 h-full hover:scale-[1.02]">
-                <div className="flex items-start gap-5">
-                  <div className="text-4xl flex-shrink-0 mt-1">{card.icon}</div>
-                  <div>
-                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                      {card.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {card.description}
-                    </p>
-                  </div>
-                </div>
+              <div className="w-11 h-11 rounded-xl bg-muted border border-border grid place-items-center text-xl mb-4">
+                {card.icon}
               </div>
+              <h3 className="text-[1.15rem] font-bold text-foreground mb-2.5 leading-snug">
+                {card.title}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {card.description}
+              </p>
             </div>
           ))}
         </div>

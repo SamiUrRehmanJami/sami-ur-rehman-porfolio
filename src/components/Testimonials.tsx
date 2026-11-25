@@ -1,34 +1,71 @@
-import { Button } from "@/components/ui/button";
+import { useEffect, useRef, useState } from "react";
+import { testimonials } from "@/data/portfolio";
+
+const avatarColors = ["hsl(20 59% 48%)", "#16a34a", "#6366f1", "#0ea5e9"];
 
 export const Testimonials = () => {
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-  };
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.15 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section id="testimonials" className="py-12 sm:py-16 px-4 sm:px-6 bg-gradient-to-b from-secondary/10 to-background relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
+    <section
+      id="testimonials"
+      ref={sectionRef}
+      className="py-20 sm:py-28 px-4 sm:px-6 bg-background"
+    >
+      <div className="container mx-auto">
+        <div
+          className={`text-center max-w-2xl mx-auto transition-all duration-1000 ${
+            isVisible ? "animate-fade-in-up" : "opacity-0"
+          }`}
+        >
+          <span className="eyebrow">Testimonials</span>
+          <h2 className="mt-4 mb-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
+            What clients say<span className="text-primary">.</span>
+          </h2>
+          <p className="text-base sm:text-lg text-muted-foreground">
+            A few words from people I've shipped with. More references available on request.
+          </p>
+        </div>
 
-      <div className="container mx-auto relative z-10">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="bg-card border border-border rounded-2xl p-8 shadow-glass hover:shadow-glow hover:border-primary/30 transition-all duration-300">
-            <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center mx-auto mb-6 shadow-glow">
-              <span className="text-2xl">🤝</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-              References Available on Request
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-8">
-              I work with clients who value quality over speed. Reach out and I'll connect you directly with past collaborators.
-            </p>
-            <Button
-              size="lg"
-              className="bg-gradient-primary text-primary-foreground font-semibold px-8 py-5 rounded-full shadow-glow hover:shadow-[0_0_60px_hsl(224_85%_65%_/_0.6)] transition-all duration-300 hover:scale-105"
-              onClick={scrollToContact}
+        <div className="mt-12 grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {testimonials.map((t, index) => (
+            <div
+              key={t.name}
+              className={`flex flex-col bg-card border border-border rounded-2xl p-7 shadow-[0_1px_2px_rgba(17,17,17,.05)] hover:shadow-glow transition-all duration-300 ${
+                isVisible ? "animate-fade-in-up" : "opacity-0"
+              }`}
+              style={{ animationDelay: `${index * 140}ms` }}
             >
-              Let's Talk
-            </Button>
-          </div>
+              <div className="text-primary tracking-widest text-sm mb-4">★★★★★</div>
+              <p className="text-[0.98rem] text-foreground leading-relaxed mb-6">
+                "{t.quote}"
+              </p>
+              <div className="flex items-center gap-3 mt-auto">
+                <span
+                  className="w-10 h-10 rounded-full grid place-items-center font-bold text-sm text-white"
+                  style={{ background: avatarColors[index % avatarColors.length] }}
+                >
+                  {t.initials}
+                </span>
+                <div>
+                  <div className="font-semibold text-sm text-foreground">{t.name}</div>
+                  <div className="text-xs text-muted-foreground">Client — US</div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/data/portfolio";
+
+const monogram = (title: string) => {
+  const first = title.split(/[\s—–-]+/).filter(Boolean)[0] ?? title;
+  return first.slice(0, 2).toUpperCase();
+};
 
 export const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,7 +16,7 @@ export const Projects = () => {
       ([entry]) => {
         if (entry.isIntersecting) setIsVisible(true);
       },
-      { threshold: 0.1 }
+      { threshold: 0.05 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -22,84 +26,96 @@ export const Projects = () => {
     <section
       id="projects"
       ref={sectionRef}
-      className="py-12 sm:py-16 px-4 sm:px-6 bg-background relative overflow-hidden"
+      className="py-20 sm:py-28 px-4 sm:px-6 bg-background"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
-
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto">
         <div
-          className={`text-center mb-16 transition-all duration-1000 ${
+          className={`text-center max-w-2xl mx-auto transition-all duration-1000 ${
             isVisible ? "animate-fade-in-up" : "opacity-0"
           }`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Things I've Built
+          <span className="eyebrow">Selected Work</span>
+          <h2 className="mt-4 mb-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
+            Things I've built<span className="text-primary">.</span>
           </h2>
-          <div className="h-1 w-24 bg-gradient-primary rounded-full mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Showcasing a selection of projects that demonstrate my expertise and passion
+          <p className="text-base sm:text-lg text-muted-foreground">
+            Production systems — AI platforms, marketplaces and real-time SaaS — shipped for teams
+            that needed them to actually work.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <div
+            <article
               key={project.title}
-              className={`group transition-all duration-1000 ${
+              className={`group flex flex-col bg-card border border-border rounded-2xl overflow-hidden shadow-[0_1px_2px_rgba(17,17,17,.05)] hover:-translate-y-1 hover:shadow-glow transition-all duration-300 ${
                 isVisible ? "animate-fade-in-up" : "opacity-0"
               }`}
-              style={{ animationDelay: `${index * 150}ms` }}
+              style={{ animationDelay: `${index * 90}ms` }}
             >
-              <div className="relative h-full">
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${project.gradient} rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500`}
-                />
-
-                <div className="relative bg-card/70 backdrop-blur-glass border border-border rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-glass hover:shadow-glow transition-all duration-500 h-full flex flex-col group-hover:scale-[1.02]">
-                  <div className="mb-5">
-                    <div
-                      className={`w-16 h-1 bg-gradient-to-r ${project.gradient} rounded-full mb-4`}
-                    />
-                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    {project.badge && (
-                      <span className="inline-block mb-3 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold">
-                        {project.badge}
-                      </span>
-                    )}
-                    <p className="text-muted-foreground leading-relaxed text-sm">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="mt-auto flex gap-3">
-                    {project.demoUrl && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="flex-1 border-primary/50 hover:bg-primary/10 transition-all duration-300"
-                        onClick={() => window.open(project.demoUrl, "_blank")}
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        View Live
-                      </Button>
-                    )}
-                  </div>
-                </div>
+              {/* thumbnail */}
+              <div className="relative h-40 bg-muted border-b border-border flex items-center justify-center overflow-hidden">
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-[0.1]`} />
+                {/* monogram fallback (behind the banner image) */}
+                <span className="relative text-5xl font-bold tracking-tighter text-foreground/15 select-none">
+                  {monogram(project.title)}
+                </span>
+                {/* live-site banner image (hides itself if it fails to load) */}
+                {project.image && (
+                  <img
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover object-top"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
+                  />
+                )}
+                {project.badge && (
+                  <span className="absolute top-3.5 left-3.5 z-10 text-xs font-semibold text-foreground bg-background/90 border border-border px-2.5 py-1 rounded-full shadow-[0_1px_2px_rgba(17,17,17,.05)]">
+                    {project.badge}
+                  </span>
+                )}
               </div>
-            </div>
+
+              {/* body */}
+              <div className="flex flex-col flex-1 p-6">
+                <h3 className="text-[1.1rem] font-bold text-foreground leading-snug mb-2 group-hover:text-primary transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  {project.description}
+                </p>
+
+                <div className="mt-auto flex flex-wrap gap-2">
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="text-xs font-medium text-muted-foreground bg-muted border border-border px-2.5 py-1 rounded-md"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {project.demoUrl ? (
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all"
+                  >
+                    View live
+                    <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                ) : (
+                  <span className="mt-4 inline-flex items-center text-sm font-medium text-muted-foreground/70">
+                    Private build
+                  </span>
+                )}
+              </div>
+            </article>
           ))}
         </div>
       </div>

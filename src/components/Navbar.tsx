@@ -5,8 +5,8 @@ import { personal } from "@/data/portfolio";
 const navLinks = [
   { label: "About", id: "about" },
   { label: "Services", id: "services" },
-  { label: "Skills", id: "skills" },
-  { label: "Projects", id: "projects" },
+  { label: "Work", id: "projects" },
+  { label: "AI Tools", id: "ai-tools" },
   { label: "Experience", id: "experience" },
   { label: "Contact", id: "contact" },
 ];
@@ -51,19 +51,19 @@ export const Navbar = () => {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/80 backdrop-blur-md border-b border-border ${
-          scrolled ? "shadow-[0_4px_30px_rgba(0,0,0,0.4)]" : ""
+          scrolled ? "shadow-[0_6px_24px_rgba(20,15,10,0.06)]" : ""
         }`}
       >
-        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="container mx-auto px-6 h-[68px] flex items-center justify-between">
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="flex items-center gap-3 group"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-primary flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform duration-300">
-              <span className="text-sm font-bold text-primary-foreground">SR</span>
+            <div className="w-9 h-9 rounded-[10px] bg-foreground flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+              <span className="text-sm font-bold text-background tracking-tight">SR</span>
             </div>
-            <span className="hidden sm:block font-bold text-foreground text-sm tracking-wide group-hover:text-primary transition-colors">
+            <span className="hidden sm:block font-bold text-foreground text-[0.95rem] tracking-tight group-hover:text-primary transition-colors">
               {personal.name}
             </span>
           </button>
@@ -74,15 +74,12 @@ export const Navbar = () => {
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className={`relative px-4 py-2 text-sm rounded-lg transition-all duration-200 ${
+                className={`relative px-3.5 py-2 text-sm rounded-lg transition-all duration-200 ${
                   activeSection === link.id
                     ? "text-primary font-semibold"
                     : "text-muted-foreground font-medium hover:text-foreground"
                 }`}
               >
-                {activeSection === link.id && (
-                  <span className="absolute inset-0 bg-primary/10 rounded-lg" />
-                )}
                 <span className="relative">{link.label}</span>
               </button>
             ))}
@@ -91,14 +88,14 @@ export const Navbar = () => {
           {/* CTA + mobile toggle */}
           <div className="flex items-center gap-3">
             <button
-              onClick={() => window.open(personal.calendlyUrl, "_blank")}
-              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold shadow-glow hover:bg-primary/90 hover:scale-105 transition-all duration-200"
+              onClick={() => scrollTo("contact")}
+              className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full bg-foreground text-background text-sm font-semibold hover:-translate-y-0.5 hover:shadow-glow transition-all duration-200"
             >
-              Book a Call
+              Let's talk
             </button>
 
             <button
-              className="md:hidden p-2 rounded-lg hover:bg-secondary/60 transition-colors"
+              className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
               onClick={() => setMenuOpen((v) => !v)}
               aria-label="Toggle menu"
             >
@@ -114,7 +111,7 @@ export const Navbar = () => {
         {/* Mobile menu */}
         <div
           className={`md:hidden overflow-hidden transition-all duration-300 ${
-            menuOpen ? "max-h-96 border-b border-border/50" : "max-h-0"
+            menuOpen ? "max-h-96 border-b border-border" : "max-h-0"
           }`}
         >
           <nav className="bg-background/95 backdrop-blur-xl px-6 py-4 flex flex-col gap-1">
@@ -125,20 +122,17 @@ export const Navbar = () => {
                 className={`text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                   activeSection === link.id
                     ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                    : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                 }`}
               >
                 {link.label}
               </button>
             ))}
             <button
-              onClick={() => {
-                window.open(personal.calendlyUrl, "_blank");
-                setMenuOpen(false);
-              }}
-              className="mt-2 px-4 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold text-center shadow-glow"
+              onClick={() => scrollTo("contact")}
+              className="mt-2 px-4 py-3 rounded-full bg-foreground text-background text-sm font-semibold text-center"
             >
-              Book a Call
+              Let's talk
             </button>
           </nav>
         </div>
@@ -165,9 +159,9 @@ const ScrollProgress = () => {
   }, []);
 
   return (
-    <div className="fixed top-16 left-0 right-0 z-50 h-[2px] bg-transparent">
+    <div className="fixed top-[68px] left-0 right-0 z-50 h-[2px] bg-transparent">
       <div
-        className="h-full bg-gradient-primary shadow-glow transition-all duration-75 ease-out"
+        className="h-full bg-primary transition-all duration-75 ease-out"
         style={{ width: `${progress}%` }}
       />
     </div>
